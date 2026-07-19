@@ -1,7 +1,6 @@
-// コミットメッセージをConventional Commits形式に強制する設定
-/** @type {import('@commitlint/types').UserConfig} */
-const config = {
+module.exports = {
   extends: ['@commitlint/config-conventional'],
-}
-
-export default config
+  rules: {
+    'subject-case': [0], // 日本語コミットメッセージのため無効化
+  },
+};
