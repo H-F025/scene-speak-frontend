@@ -1,0 +1,1 @@
+export { useHistoryQuery } from './useHistoryQuery'
