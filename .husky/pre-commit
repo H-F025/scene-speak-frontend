@@ -1,0 +1,12 @@
+# commit前に型チェック・lint-staged を Docker コンテナ内で実行する。
+# host / container の node_modules 乖離を防ぐため、host 側 node_modules には依存しない。
+# 依存系コマンド (pnpm add / install) もコンテナ内のみで実行する運用と整合させる。
+
+if ! docker compose ps --services --filter status=running 2>/dev/null | grep -q '^app$'; then
+  echo "Docker service 'app' is not running."
+  echo "Docker コンテナを起動してから commit してください: docker compose up -d app"
+  exit 1
+fi
+
+docker compose exec -T app pnpm type-check || exit 1
+docker compose exec -T app pnpm lint-staged || exit 1

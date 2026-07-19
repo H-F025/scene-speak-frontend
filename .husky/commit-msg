@@ -1,0 +1,12 @@
+# コミットメッセージを Conventional Commits 形式で検証する hook。
+# pre-commit と同じく Docker コンテナ内で実行し、host node_modules への依存を排除する。
+# $1 は git が渡す相対パス (`.git/COMMIT_EDITMSG`)。host repo root と container `/app` が
+# volume mount で同一ツリーのため、コンテナ内 cwd=/app からも同じ相対パスで解決できる。
+
+if ! docker compose ps --services --filter status=running 2>/dev/null | grep -q '^app$'; then
+  echo "Docker service 'app' is not running."
+  echo "Docker コンテナを起動してから commit してください: docker compose up -d app"
+  exit 1
+fi
+
+docker compose exec -T app pnpm exec commitlint --edit "$1" || exit 1
