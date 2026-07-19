@@ -1,0 +1,10 @@
+# 改行コードをLFに統一し、画像ファイルをバイナリとして扱う設定
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+
+*.svg text
