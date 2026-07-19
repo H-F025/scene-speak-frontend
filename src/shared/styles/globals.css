@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/*
+ * デザイントークンは @theme inline に **値を直接** 記述する 1 層方式。
+ *
+ * Tailwind v4 は `--color-{name}` を読み取って `bg-{name}` / `text-{name}` / `border-{name}`
+ * ユーティリティを自動生成する。本プロジェクトはダークモード切替・動的テーマ切替を行わないため、
+ * `:root` + `.dark` で `var()` 経由参照する 2 層構造は採用しない (将来必要になった時点で再設計)。
+ *
+ * 命名規則 (用途別分類):
+ * - primary-*  : ブランドのプライマリ青 (ボタン背景・アクセント等)
+ * - page-*     : ページ背景用の中性的な薄青 (画面のベースカラー)
+ * - ink-*      : テキスト色 (濃いグレー〜青寄りグレー)
+ * - その他     : shadcn 規約トークン (background / foreground / muted 等)
+ *
+ * 注意: @theme で `--color-bg-X` のように `bg-` 接頭辞を含めると、
+ *       Tailwind が `bg-bg-X` (二重 `bg-`) を生成してしまうため避ける。
+ */
+@theme inline {
+  /* === Typography / Radius === */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* === shadcn 規約トークン (neutral baseColor) === */
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+  --color-primary: oklch(0.205 0 0);
+  --color-primary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.97 0 0);
+  --color-secondary-foreground: oklch(0.205 0 0);
+  --color-muted: oklch(0.97 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+  --color-accent: oklch(0.97 0 0);
+  --color-accent-foreground: oklch(0.205 0 0);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-border: oklch(0.922 0 0);
+  --color-input: oklch(0.922 0 0);
+  --color-ring: oklch(0.708 0 0);
+  --color-chart-1: oklch(0.87 0 0);
+  --color-chart-2: oklch(0.556 0 0);
+  --color-chart-3: oklch(0.439 0 0);
+  --color-chart-4: oklch(0.371 0 0);
+  --color-chart-5: oklch(0.269 0 0);
+  --color-sidebar: oklch(0.985 0 0);
+  --color-sidebar-foreground: oklch(0.145 0 0);
+  --color-sidebar-primary: oklch(0.205 0 0);
+  --color-sidebar-primary-foreground: oklch(0.985 0 0);
+  --color-sidebar-accent: oklch(0.97 0 0);
+  --color-sidebar-accent-foreground: oklch(0.985 0 0);
+  --color-sidebar-border: oklch(0.922 0 0);
+  --color-sidebar-ring: oklch(0.708 0 0);
+
+  /* === EikaChat design tokens (english.ui.json theme.colors) === */
+
+  /* ブランドプライマリ青 (ボタン・アクセント) */
+  --color-primary-alt: #3b82f6;
+  --color-primary-dark: #1e40af;
+  --color-primary-50: #dbeafe;
+  --color-primary-100: #bfdbfe;
+  --color-navy: #1e3a5f;
+
+  /* テキスト色 */
+  --color-ink-900: #1a2e4a;
+  --color-ink-700: #4a5e74;
+  --color-ink-500: #758ca3;
+  --color-ink-400: #94a3b8;
+  --color-ink-400-alt: #9ca3af;
+  --color-ink-300: #cbd5e1;
+  --color-ink-600-alt: #64748b;
+  --color-ink-700-alt: #374151;
+  --color-ink-950: #1a1a2e;
+
+  /* ページ背景用の薄青 (画面ベース色) */
+  --color-page-50: #f0f7ff;
+  --color-page-100: #eef6ff;
+
+  /* アクセントオレンジ (新規登録ボタン専用。ログインの primary 青と用途分離) */
+  --color-accent-orange-500: #f97316;
+
+  /* その他 (境界線・警告・成功) */
+  --color-border-soft: #e8f1fa;
+  --color-warn: #ff7a2f;
+  --color-warn-soft: #ff9f45;
+  --color-success: #34c759;
+
+  /* === 2026-06-05 リデザイン版 新概念トークン (english.ui.json 命名体系) ===
+   * 旧トークン (primary-* / page-* / ink-*) と併用し、画面ごとに段階移行する。
+   * 以降のリデザイン spec で順次追加予定。
+   */
+  --color-brand: #3b82f6; /* $brand (= primary-alt) */
+  --color-brand-dark: #1e40af; /* $brand-dark (= primary-dark) */
+  --color-brand-soft: #d6eaff; /* $bg-brand-soft: ブランド薄青 (iconBg 背景等) */
+
+  /* 2026-06-05 home redesign 追加分 (english.ui.json 概念トークン名)
+   * 一部 ($text-heading / $text-subtle / $bg-subtle) は既存 ink-* / page-* と視覚的に同一のため
+   * 重複トークンは作らず既存を流用する。本ブロックは新規概念のみ追加する
+   */
+  --color-link: #3b82f6; /* $link: recommendCard 等の青背景 (primary-alt と同値だが用途分離) */
+  --color-accent-orange: #f97316; /* $accent-orange: continueRow / diffBadge (JSON 仕様: #FF7A2F。home/weakness で既出のため既存値を維持) */
+  --color-accent-green: #10b981; /* $accent-green: 本日学習時間カード等 (JSON 仕様: #34C759。home/weakness で既出のため既存値を維持) */
+  --color-border-brand: #bfdbfe; /* $border-brand: recommendCard の説明テキスト等 (primary-100 と同値の concept alias) */
+  --color-bg-app: #f0f7ff; /* $bg-app: 画面全体の背景 (page-50 と同値) */
+  --color-bg-subtle: #eef6ff; /* $bg-subtle: カード内アイコン背景等 (page-100 と同値) */
+  --color-border-subtle: #e8f1fa; /* $border-subtle: 区切り線 (border-soft と同値) */
+  --color-border-muted: #cbd5e1; /* $border-muted: 弱い境界線 (ink-300 と同値) */
+  --color-text-heading: #1a2e4a; /* $text-heading: 見出し (ink-900 と同値) */
+  --color-text-body: #374151; /* $text-body: 本文 (ink-700-alt と同値) */
+  --color-text-muted: #4a5e74; /* $text-muted: 補助テキスト (ink-700 と同値) */
+  --color-text-muted-alt: #64748b; /* $text-muted-alt: 補助テキスト (ink-600-alt と同値) */
+  --color-text-subtle: #758ca3; /* $text-subtle: タブ非選択テキスト等 (ink-500 と同値) */
+  --color-text-placeholder: #8a9bb0; /* $text-placeholder: プレースホルダー (新規) */
+  --color-text-placeholder-alt: #8a9bb5; /* $text-placeholder-alt: プレースホルダー (新規) */
+  --color-text-disabled: #94a3b8; /* $text-disabled: 無効テキスト (ink-400 と同値) */
+  --color-text-descriptive: #6b8cae; /* $text-descriptive: 説明テキスト (新規) */
+  --color-icon-subtle: #9bb0c5; /* $icon-subtle: 弱いアイコン (新規) */
+  --color-icon-muted: #9ca3af; /* $icon-muted: 弱いアイコン (ink-400-alt と同値) */
+  --color-accent-orange-soft: #ff9f45; /* $accent-orange-soft: ソフトオレンジ (warn-soft と同値) */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
