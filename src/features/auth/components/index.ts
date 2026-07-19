@@ -1,3 +1,4 @@
+export { GuestLoginButton } from './GuestLoginButton'
 export { LoginForm } from './LoginForm'
 export { LoginHeader } from './LoginHeader'
 export { RegisterForm } from './RegisterForm'

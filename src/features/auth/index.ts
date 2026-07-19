@@ -4,6 +4,7 @@ export { useUser } from './api'
 // account feature が英語レベル更新後に user キャッシュを invalidate するために参照する
 export { AUTH_QUERY_KEYS } from './constants'
 export {
+  GuestLoginButton,
   LoginForm,
   LoginHeader,
   RegisterForm,
