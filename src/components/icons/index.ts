@@ -27,6 +27,7 @@ export {
   MessageCircle,
   Shield,
   Signal,
+  Sparkles,
   Star,
   Target,
   User,
