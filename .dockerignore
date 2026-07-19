@@ -1,0 +1,7 @@
+# Dockerイメージに含めないファイル・ディレクトリ
+.git
+.next
+node_modules
+.env*
+.husky
+README.md

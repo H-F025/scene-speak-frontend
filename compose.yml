@@ -1,0 +1,18 @@
+# ローカル開発環境の起動設定。
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/local/Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - path: .env.local
+        required: false
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
