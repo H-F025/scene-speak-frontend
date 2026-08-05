@@ -182,6 +182,12 @@ const HEADERS: HeaderEntry[] = [
     ),
   },
   {
+    pattern: /^\/mypage\/contact$/,
+    render: (_m, { push }) => (
+      <Header title="✉️ お問い合わせ" onBack={() => push(ROUTES.MYPAGE)} />
+    ),
+  },
+  {
     pattern: FEEDBACK_PATTERN,
     render: (_m, { push, searchParams }) => (
       <Header

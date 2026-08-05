@@ -10,6 +10,7 @@ export const ROUTES = {
   HISTORY: '/history',
   MYPAGE: '/mypage',
   MYPAGE_ENGLISH_LEVEL: '/mypage/english-level',
+  MYPAGE_CONTACT: '/mypage/contact',
   QUESTIONS: '/questions',
   REVIEW_SETS: '/review-sets',
 } as const

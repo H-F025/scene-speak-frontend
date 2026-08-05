@@ -24,6 +24,7 @@ export {
   Lightbulb,
   Loader2,
   LogOut,
+  Mail,
   MessageCircle,
   Shield,
   Signal,

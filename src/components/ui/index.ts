@@ -21,6 +21,7 @@ export {
 } from './sheet'
 export { Skeleton } from './skeleton'
 export { Toaster } from './sonner'
+export { Textarea } from './textarea'
 export { Toggle } from './toggle'
 export { toggleVariants } from './variants/toggle'
 export { ToggleGroup, ToggleGroupItem } from './toggle-group'
