@@ -9,6 +9,7 @@ export const HTTP_STATUS = {
   CONFLICT: 409,
   CSRF_TOKEN_MISMATCH: 419,
   UNPROCESSABLE_ENTITY: 422,
+  TOO_MANY_REQUESTS: 429,
 } as const
 
 // バックエンド関連で扱う状態変更系メソッド
