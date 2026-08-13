@@ -19,6 +19,8 @@ import type { ContactFormInput } from '../schemas/contact'
 interface ContactFormProps {
   form: UseFormReturn<ContactFormInput>
   handleSubmit: () => void
+  isPending: boolean
+  rootError?: string
 }
 
 const FIELD_INPUT_CLASS =
@@ -27,7 +29,12 @@ const FIELD_INPUT_CLASS =
 // お問い合わせフォーム (presentational)。状態・副作用は useContactForm に集約済み。
 // レイアウトは EnglishLevelForm (見出し + 説明文 + 入力群 + CTA) と同方針、
 // 個々の入力欄は auth の TextField と同じ FormItem/FormLabel/FormControl/FormMessage 構成を踏襲する
-export function ContactForm({ form, handleSubmit }: ContactFormProps) {
+export function ContactForm({
+  form,
+  handleSubmit,
+  isPending,
+  rootError,
+}: ContactFormProps) {
   return (
     <Form {...form}>
       <form
@@ -43,6 +50,16 @@ export function ContactForm({ form, handleSubmit }: ContactFormProps) {
             ご質問・ご要望・不具合報告など、お気軽にお送りください。
           </p>
         </div>
+
+        {rootError && (
+          <p
+            role="alert"
+            aria-live="polite"
+            className="rounded-xl border-[1.5px] border-destructive/30 bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive"
+          >
+            {rootError}
+          </p>
+        )}
 
         <section className="flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm">
           <FormField
@@ -111,6 +128,7 @@ export function ContactForm({ form, handleSubmit }: ContactFormProps) {
 
         <ActionButton
           type="submit"
+          disabled={isPending}
           leadingIcon={<Mail aria-hidden className="size-5" />}
         >
           送信する

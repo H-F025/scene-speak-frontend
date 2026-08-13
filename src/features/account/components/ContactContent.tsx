@@ -19,7 +19,18 @@ export function ContactContent() {
 // defaultValues が確定してから form を初期化するため内側コンポーネントに分離する
 // (useContactForm の defaultValues は初回マウント時に固定されるため、EnglishLevelContent と同方針)
 function ContactFormSection({ name, email }: { name: string; email: string }) {
-  const { form, handleSubmit } = useContactForm({ name, email, message: '' })
+  const { form, handleSubmit, isPending, rootError } = useContactForm({
+    name,
+    email,
+    message: '',
+  })
 
-  return <ContactForm form={form} handleSubmit={handleSubmit} />
+  return (
+    <ContactForm
+      form={form}
+      handleSubmit={handleSubmit}
+      isPending={isPending}
+      rootError={rootError}
+    />
+  )
 }
