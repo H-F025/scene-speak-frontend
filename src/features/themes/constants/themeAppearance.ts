@@ -5,7 +5,7 @@
 //
 // id とテーマ名の対応 (現行バックエンド seed 順):
 // 1: カフェで注文 / 2: 空港でチェックイン / 3: ホテルで質問 /
-// 4: 自己紹介 / 5: 仕事の打ち合わせ / 6: フリートーク
+// 4: 自己紹介 / 5: 仕事の打ち合わせ / 6: フリートーク / 7: 道を尋ねる
 
 export interface ThemeAppearance {
   emoji: string
@@ -27,6 +27,7 @@ export const THEME_APPEARANCE_BY_ID: Readonly<Record<number, ThemeAppearance>> =
     4: { emoji: '🙋', bgColor: '#FFF0F6', iconColor: '#EC4899' },
     5: { emoji: '💼', bgColor: '#ECFEFF', iconColor: '#0891B2' },
     6: { emoji: '🎲', bgColor: '#FFF7ED', iconColor: '#F97316' },
+    7: { emoji: '🗺️', bgColor: '#F0FDF4', iconColor: '#16A34A' },
   }
 
 export const getThemeAppearance = (themeId: number): ThemeAppearance =>
