@@ -23,3 +23,15 @@ if (!parsed.success) {
 }
 
 export const env = parsed.data
+
+// LAN IP (例: http://192.168.1.3:3000) 経由でアクセスした場合、API 側のホストが
+// localhost 固定だと CSRF Cookie がページと異なるホストに紐付き document.cookie から
+// 読めず CSRF token mismatch になる。ブラウザ実行時はページと同じホスト名を使うことで
+// Cookie のホストを揃える (ポートは Cookie のスコープに含まれないため影響しない)
+export const getApiBaseUrl = (): string => {
+  if (typeof window === 'undefined') return env.NEXT_PUBLIC_API_URL
+
+  const url = new URL(env.NEXT_PUBLIC_API_URL)
+  url.hostname = window.location.hostname
+  return url.origin
+}
