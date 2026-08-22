@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { SANCTUM_CSRF_COOKIE_PATH } from './constants'
-import { getApiBaseUrl } from './env'
+import { env } from './env'
 
 // Laravel Sanctum SPA 認証の CSRF Cookie 取得状態。
 // 並行リクエストでも一度だけ /sanctum/csrf-cookie を叩くため module-level で共有する
@@ -14,7 +14,7 @@ export const fetchCsrfCookie = async (): Promise<void> => {
 
   csrfPromise = (async () => {
     try {
-      await axios.get(`${getApiBaseUrl()}${SANCTUM_CSRF_COOKIE_PATH}`, {
+      await axios.get(`${env.NEXT_PUBLIC_API_URL}${SANCTUM_CSRF_COOKIE_PATH}`, {
         withCredentials: true,
       })
       csrfInitialized = true

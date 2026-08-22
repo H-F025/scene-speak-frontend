@@ -7,14 +7,14 @@ import {
   ROUTES,
   STATE_CHANGING_HTTP_METHODS,
 } from './constants'
-import { getApiBaseUrl } from './env'
+import { env } from './env'
 import { fetchCsrfCookie, resetCsrfState } from './sanctumCsrf'
 
 type RetriableRequestConfig = InternalAxiosRequestConfig & { _retry?: boolean }
 
 // Laravel Sanctum SPA 認証: Cookie ベース + XSRF-TOKEN を自動付与
 export const apiClient = axios.create({
-  baseURL: getApiBaseUrl(),
+  baseURL: env.NEXT_PUBLIC_API_URL,
   timeout: API_TIMEOUT_MS,
   withCredentials: true,
   withXSRFToken: true,
