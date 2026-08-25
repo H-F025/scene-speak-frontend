@@ -3,4 +3,5 @@ export {
   ContactContent,
   EnglishLevelContent,
   MyPageContent,
+  PrivacyPolicyContent,
 } from './components'

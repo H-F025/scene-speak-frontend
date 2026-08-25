@@ -11,6 +11,7 @@ export const ROUTES = {
   MYPAGE: '/mypage',
   MYPAGE_ENGLISH_LEVEL: '/mypage/english-level',
   MYPAGE_CONTACT: '/mypage/contact',
+  MYPAGE_PRIVACY: '/mypage/privacy',
   QUESTIONS: '/questions',
   REVIEW_SETS: '/review-sets',
 } as const

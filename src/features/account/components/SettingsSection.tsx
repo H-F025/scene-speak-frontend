@@ -17,8 +17,8 @@ interface SettingsSectionProps {
   isLoggingOut: boolean
 }
 
-// 設定メニュー項目。href のある項目は Link で遷移、無い項目 (プライバシー) は遷移先未実装のため表示のみ。
-// 英語レベル設定は spec-013 で実装したため /mypage/english-level へ遷移する。
+// 設定メニュー項目。英語レベル設定は spec-013 で実装したため /mypage/english-level へ遷移する。
+// プライバシーは /mypage/privacy (プライバシーポリシー) へ、
 // ヘルプ・お問い合わせは /mypage/contact (お問い合わせフォーム) へ遷移する
 const MENU_ITEMS: ReadonlyArray<{
   label: string
@@ -32,7 +32,12 @@ const MENU_ITEMS: ReadonlyArray<{
     iconClassName: 'text-brand',
     href: ROUTES.MYPAGE_ENGLISH_LEVEL,
   },
-  { label: 'プライバシー', Icon: Shield, iconClassName: 'text-accent-green' },
+  {
+    label: 'プライバシー',
+    Icon: Shield,
+    iconClassName: 'text-accent-green',
+    href: ROUTES.MYPAGE_PRIVACY,
+  },
   {
     label: 'ヘルプ・お問い合わせ',
     Icon: Info,
