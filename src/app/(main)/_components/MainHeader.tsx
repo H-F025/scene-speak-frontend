@@ -188,6 +188,15 @@ const HEADERS: HeaderEntry[] = [
     ),
   },
   {
+    pattern: /^\/mypage\/privacy$/,
+    render: (_m, { push }) => (
+      <Header
+        title="🔒 プライバシーポリシー"
+        onBack={() => push(ROUTES.MYPAGE)}
+      />
+    ),
+  },
+  {
     pattern: FEEDBACK_PATTERN,
     render: (_m, { push, searchParams }) => (
       <Header
